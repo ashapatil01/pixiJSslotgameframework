@@ -1,0 +1,47 @@
+{
+  "stage": {
+    "width": 1280,
+    "height": 720,
+    "backgroundColor": "#0b0d12"
+  },
+  "reels": {
+    "count": 5,
+    "rows": 3,
+    "symbolSize": 120,
+    "gap": 8,
+    "spinDurationMs": 1400,
+    "stopStaggerMs": 180,
+    "decelerationMs": 350,
+    "stripLength": 24
+  },
+  "symbols": [
+    { "id": "A",  "label": "A",  "color": "#ff5b6c", "payout": 50,  "isScatter": false },
+    { "id": "K",  "label": "K",  "color": "#ffb84d", "payout": 30,  "isScatter": false },
+    { "id": "Q",  "label": "Q",  "color": "#4dd0ff", "payout": 20,  "isScatter": false },
+    { "id": "J",  "label": "J",  "color": "#7bff9f", "payout": 10,  "isScatter": false },
+    { "id": "10", "label": "10", "color": "#c18bff", "payout": 5,   "isScatter": false },
+    { "id": "SC", "label": "★",  "color": "#ffd166", "payout": 0,   "isScatter": true  }
+  ],
+  "payLines": [
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 0],
+    [2, 2, 2, 2, 2],
+    [0, 1, 2, 1, 0],
+    [2, 1, 0, 1, 2]
+  ],
+  "bet": {
+    "default": 1,
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "betArray": [1, 2, 5, 10]
+  },
+  "balance": {
+    "initial": 1000
+  },
+  "freeSpins": {
+    "scatterTriggerCount": 3,
+    "awardedSpins": 8,
+    "multiplier": 2
+  }
+}
