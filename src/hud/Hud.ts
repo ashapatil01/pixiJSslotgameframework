@@ -112,6 +112,15 @@ export class HUD {
 
         this.update({ balance: initialBalance, bet: this.bet, lastWin: 0, freeSpinsLeft: 0 });
 
+        if (this.betText.text === String(this.betCfg.min)) {
+            this.betMinus.eventMode = "none"
+            this.betMinus.alpha = 0.45;
+        }
+        else {
+            this.betMinus.eventMode = "static"
+            this.betMinus.alpha = 1;
+        }
+
         this.bus.on('state:changed', ({ to }) => {
             this.setCanSpin(to === 'IDLE');
         });
@@ -130,8 +139,26 @@ export class HUD {
 
     private changeBet(delta: number): void {
         if (!this.canSpin) return;
-        const next = Math.max(this.betCfg.min, Math.min(this.betCfg.max, this.bet + delta));
+        let length = this.betCfg.betArray.length
+        let min = Math.min(this.betCfg.betArray[length - 1], this.betCfg.betArray[(this.betCfg.betArray.indexOf(this.bet) + delta)])
+        const next = Math.max(this.betCfg.betArray[0], min);
         this.bet = next;
+        if (next === this.betCfg.min) {
+            this.betMinus.eventMode = "none"
+            this.betMinus.alpha = 0.45;
+        }
+        else {
+            this.betMinus.eventMode = "static"
+            this.betMinus.alpha = 1;
+        }
+        if (next === this.betCfg.max) {
+            this.betPlus.eventMode = "none"
+            this.betPlus.alpha = 0.45;
+        }
+        else {
+            this.betPlus.eventMode = "static"
+            this.betPlus.alpha = 1;
+        }
         this.betText.text = String(next);
     }
 
@@ -205,5 +232,7 @@ function makeCircleButton(
     c.eventMode = 'static';
     c.cursor = 'pointer';
     c.on('pointerdown', onClick);
+    c.on('pointerover', () => (bg.tint = 0xffffff));
+    c.on('pointerout', () => (bg.tint = 0xdddddd));
     return c;
 }
