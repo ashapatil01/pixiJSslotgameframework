@@ -59,7 +59,7 @@ export class SymbolFactory {
     const container = new PIXI.Container();
 
     const bg = new PIXI.Graphics();
-    const color = PIXI.utils.string2hex(def.color);
+    const color = new PIXI.Color(def.color).toNumber();
     bg.beginFill(color, 1);
     bg.lineStyle({ width: 4, color: 0x000000, alpha: 0.25, alignment: 0 });
     bg.drawRoundedRect(0, 0, s, s, s * 0.14);

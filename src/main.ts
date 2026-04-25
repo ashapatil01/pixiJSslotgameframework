@@ -47,7 +47,7 @@ async function bootstrap(): Promise<void> {
   const app = new PIXI.Application({
     width: config.stage.width,
     height: config.stage.height,
-    backgroundColor: PIXI.utils.string2hex(config.stage.backgroundColor),
+    backgroundColor: new PIXI.Color(config.stage.backgroundColor).toNumber(),
     antialias: true,
     resolution: Math.min(window.devicePixelRatio || 1, 2),
     autoDensity: true,
@@ -223,28 +223,6 @@ async function bootstrap(): Promise<void> {
   fit();
   refreshHud();
 
-  // Console-debug hook. Type `__slot.printTree()` to walk the hierarchy.
-  (window as unknown as { __slot: unknown }).__slot = {
-    app,
-    bus,
-    fsm,
-    reels,
-    scene,
-    config,
-    printTree: () => printTree(app.stage),
-  };
-}
-
-/**
- * Prints the display hierarchy of a PIXI container.
- * @param node The root node to print.
- * @param depth The current depth in the hierarchy.
- */
-function printTree(node: PIXI.DisplayObject, depth = 0): void {
-  const name = (node as PIXI.Container).name ?? node.constructor.name;
-  console.log(`${'  '.repeat(depth)}${name} (${node.constructor.name})`);
-  const c = node as PIXI.Container;
-  if (c.children) for (const child of c.children) printTree(child, depth + 1);
 }
 
 void bootstrap();
