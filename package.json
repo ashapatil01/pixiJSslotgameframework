@@ -1,15 +1,15 @@
 {
   "name": "pixijsslotgameframework",
   "version": "1.0.0",
-  "description": "",
+  "description": "PixiJS Slot Game Framework",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["pixijs", "slot-game", "game-framework"],
+  "author": "Asha Patil <ashapatil5401@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "pixi.js": "^7.4.2"
