@@ -223,6 +223,16 @@ async function bootstrap(): Promise<void> {
   fit();
   refreshHud();
 
+    // Console-debug hook.
+  (window as unknown as { __slot: unknown }).__slot = {
+    app,
+    bus,
+    fsm,
+    reels,
+    scene,
+    config,
+  };
+
 }
 
 void bootstrap();
